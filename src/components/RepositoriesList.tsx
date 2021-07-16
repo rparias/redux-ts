@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 
 const RepositoriesList: React.FC = () => {
@@ -6,6 +7,9 @@ const RepositoriesList: React.FC = () => {
   
   // es una forma mas elegante de llamar a mi actionCreator sin usar el dispatch aqui
   const { searchRepositories } = useActions();
+
+  // obtiene el state usando un Typed selector
+  const { data, error, loading } = useTypedSelector((state) => state.repositories);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
